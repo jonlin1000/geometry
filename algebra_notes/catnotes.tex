@@ -12,6 +12,10 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
 \newtheorem{question}{Question}
+\newtheorem{example}{Example}
+
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Ob}{\operatorname{Ob}}
 
 \title{Category Theory Introduction}
 \author{Jonathan Lin}
@@ -21,8 +25,68 @@
 
 \maketitle
 
-In the far future, I will try to do differential geometry stuff involving category theory. Probably will involve algebraic topology in some sense.
+In the far future, I will try to do differential geometry stuff involving category theory. Probably will involve algebraic topology in some sense of the word (the two subjects are connected, or so I hear.
 
 \section{Introduction to Categories}
+
+\begin{question}
+What is a category? What exactly are we trying to generalize? 
+\end{question}
+
+To attack the heart of this question, first we need to answer the sort of situation that we would like to generalize. The short answer is that we would like to generalize the following: we have a collection of structures and we would like to characterize the ``structure preserving maps'' between them. This concept in general gives us nice ways of generalizing certain structures and theorems that feel \textit{similar}.
+
+In any reasonable mathematical structure, we have a concept of \textit{composing} maps. For example, suppose $A$, $B$, and $C$ are any $3$ sets. Then given a set mapping $f:A \to B$ and $g:B \to C$ we can define a composite function $(g \circ f): A \to C$. 
+
+Really, this is all a category is. Conceived in the 20th century, categories were created to formalize reasoning generally about structures and structure preserving maps between them.
+
+\begin{defn}
+A category $\Cc$ is a mathematical structure consisting of the following two objects:
+\begin{itemize}
+	\item A class of \textit{objects}, denoted by $\Ob(\Cc)$,
+	\item A class of \textit{arrows}.
+\end{itemize}
+
+The arrows have the following properties:
+\begin{itemize}
+	\item For every arrow $f$ of $\Cc$ associated with it are a source object $A$ and target object $B$. We denote these by $s(f)$ and $t(f)$, respectively. We will write $f:A \to B$ to mean the obvious thing.
+	\item For any arrows $f:A \to B$ and $g: B \to C$ there exists an arrow $g \circ f: A \to C$, an arrow with source $A$ and target $C$. We call the circle operator composition.
+	\item Given any object $A$ there exists a so called identity morphism $1_A: A \to A$.
+\end{itemize}
+
+The arrows have to satisfy the following properties:
+\begin{itemize}
+	\item For morphisms $f:W \to X$, $g: X \to Y$, and $h: Y \to Z$, we have that $(h \circ g) \circ f = h \circ (g \circ f)$.
+	\item For any morphism $f: A \to B$ we have that $1_B \circ f = f \circ 1_A = f$.
+\end{itemize}
+\end{defn}
+
+From this great generality of a mathematical structure, we might think about some elementary consequences of the definitions.
+\begin{prop}
+	The identity morphism (synonymous with arrow) for an object $A$ in a category $\Cc$ is unique.
+\end{prop}
+\begin{proof}
+Trivial, in the sense that the proof is completely standard. If you don't know how to do this you might not have enough mathematical maturity yet to read this document.
+\end{proof}
+
+We document some simple examples of categories:
+
+\begin{example}
+Consider the class of \textbf{monoids}: mathematical structures restricted by closure under multiplication and associativity, with the existence of an identity element. Then the category $\mathcal{M}$ of all monoids and monoid homomorphisms forms a simple example of a category.
+\end{example}
+
+\begin{example}
+Consider the class of all pre-ordered sets (not totally ordered). If we consider the monotone maps between these sets, we form another simple example of a category.
+\end{example}
+
+\begin{example}
+Here's the first example of a category that does not involve multiple structures and maps between them: consider any group or monoid $K$. We consider the category $\Cc$ with one object $\ast$ and we define each arrow to be an element of $K$. That is $\forall k \in K$ we have an arrow $k: A \to A$. Since $K$ has an identity we have identity. In fact the category definition basically follows from the associativity and identity of $K$ itself.
+\end{example}
+
+\begin{example}
+In a similar sense a partially ordered set of elements forms a category. We need to add identity elements for each element in the poset, but otherwise the only other arrows are the ones we can define from an order relation.
+\end{example}
+
+There are examples of categories for most structures.
+
 
 \end{document}

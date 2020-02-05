@@ -1,0 +1,92 @@
+Now that we have considered normal paths, we will consider the idea of a particle travelling and doing work under say a force field. Let $\gamma: [a,b] \to \Real^n$ be a smooth path. We'll think of $\gamma$ as the position vector of a particle moving in $\Real^n$, which is under the influence of a force field $F: \Real^n \to \Real^n$. This means that $F(\gamma(t))$ is the force acting on the particle at time $t$.
+
+If $F$ were a constant force field, then the work done by $F$ moving the particle along a straight line from $\gamma(t_{i-1})$ to $\gamma(t_i)$ by definition would be $F \cdot (\gamma(t_i) - \gamma(t_{i-1})$ (force times displacement).
+
+So just like a path length integral approximation, the sum
+\[W(\gamma, F, P) = \sum_{i = 1}^kF(\gamma(t_i)) \cdot (\gamma(t_i) - \gamma(t_{i-1}))\]
+as an approximation to the work $W$. Based on the Riemann sum (which converges as expected), we can define the work done by the force field $F$ in moving a particle along $\gamma$ by
+\[W = \int_a^b F(\gamma(t)) \cdot \gamma'(t)~dt.\]
+In terms of the unit tangent vector
+\[T(t) = \frac{\gamma'(t)}{\norm{\gamma'(t)}},\]
+we obtain the formula
+\[W = \int_a^b F(\gamma(t)) \cdot T(t) \norm{\gamma'(t)}~dt\]
+which has the attractive form
+\[W = \int_{\gamma}F \cdot T~ds.\]
+This says that the work done by the force field is the integral with respect to the pathlength of the ``tangential component'' $F \cdot T$.
+
+In terms of the individual components in $\Real^n$, we have the formula
+\[W = \int_a^b [F_1(\gamma(t))\gamma_1'(t) + \cdots + F_n(\gamma(t))\gamma_n'(t)]~dt,\]
+or in Leibnizian notation
+\[W = \int_a^b \left(F_1\frac{dx_1}{dt} + \cdots + F_n\frac{dx_n}{dt}\right)~dt.\]
+Classically we can write this last formula as
+\[W = \int_{\gamma}F_1dx_1 + \cdots + F_ndx_n.\]
+This type of integral is called a \textbf{line integral} and of course can be defined without any motivation about work done by a particle. 
+
+\begin{definition}
+Given a $\mathcal{C}^1$ path $\gamma:[a,b] \to \Real^n$ and $n$ continuous functions $f_1, \dots, f_n$ whose domains in $\Real^n$ contain the image of $\gamma$ the line integral $\int_{\gamma}f_1dx_1 + \cdots + f_ndx_n$ is defined by
+
+\[\int_{\gamma}f_1dx_1 + \cdots + f_ndx_n = \int_a^b [f_1(\gamma(t))\gamma_1'(t) + \cdots + f_n(\gamma(t))\gamma_n'(t)]~dt.\]
+\end{definition}
+
+\subsection{An brief introduction to differential forms}
+
+\begin{definition}
+A linear \textbf{differential form} on the set $U \subset \Real^n$ is a mapping $\omega$ which associates with each point $x \in U$ a linear function $\omega(x): \Real^n \to \Real$. It is convenient and possibly less confusing to write $\omega(x) = \omega_x$.
+\end{definition}
+
+Every linear function $L: \Real^n \to Real$ has the form
+\[L(v_1, \dots, v_n) = a_1v_1 + \cdots + a_nv_n = a_1p_1(v) + \cdots + a_np_n(v)\]
+where $p_i$ denotes the projection function of $v$ onto the $i$th component. Then if we use the notation $p_i = dx_i$ then the above formula becomes
+\[L = a_1dx_1 + \cdots + a_ndx_n.\] If $L = \omega(x)$ depends on the point $x$ then so do the coefficients $a_1, \dots, a_n$, giving us the following result.
+
+\begin{proposition}
+If $\omega$ is a differential form on $U \subset \Real^n$, then there exist unique real-valued functions $a_1, \dots, a_n$ on $U$ such that 
+\[\omega(x) = \omega_x = a_1(x)dx_1 + \cdots + a_n(x)dx_n.\]
+$\omega$ is said to be continuous (or differentiable, or $\CD{1}$) if its coefficient functions $a_1, \dots, a_n$ are continous (or differentiable, or $\CD{1}$). 
+\end{proposition}
+
+Then for each $x \in U$ this expression just denotes the linear function whose value at $v$ is
+\[\omega_x(v) = a_1(x)v_1 + \cdots + a_n(x)v_n.\]
+
+\begin{definition}
+Let $\omega$ be a continuous differential form on $U \subset \Real^n$ and $\gamma:[a,b] \to U$ a $\CD{1}$ path. We define the integral of $\omega$ over the path $\gamma$ by 
+\[\int_{\gamma}\omega = \int_a^b \omega_{\gamma(t)}(\gamma'(t))~dt.\]
+In other words, if $\omega = a_1dx_1 + \cdots + a_ndx_n$, then
+\[\int_{\gamma}\omega = \int_a^b[a_1(\gamma(t))\gamma_1'(t) + \cdots + a_n(\gamma(t))\gamma_n'(t)]~dt.\]
+\end{definition}
+
+Observe that a line integral is simply the integral of the differential form appearing as its ``integrand''.
+
+\subsection{Examples}
+
+\begin{example}
+Let $\omega$ be the differential form defined on $\mathbb{R}^2 - \{0\}$ by 
+\[\omega = \frac{-ydx + xdy}{x^2 + y^2}.\]
+If $\gamma_1: [0, 1] \to \Real^2 - \{0\}$ is defined by $\gamma_1(t) = (\cos(\pi t), \sin(\pi t))$, the the image of $\gamma_1$ is the upper half of the unit circle. We can calculate
+\[\int_{\gamma_1}\omega = \pi.\]
+\end{example}
+
+\begin{example}
+Let $U$ denote $\Real^2$ minus the nonnegative $x$ axis. Let $\theta: U \to \Real$ be defined by $\theta(x, y) = \arctan(y/x)$.
+
+Then $d\theta$ will be the differential form in the previous example.
+\end{example}
+
+The following theorem is a certain generalization of the fundamental theorem of calculus for paths in $\Real^n$.
+\begin{theorem}
+If $f$ is a real valued $\CD{1}$ function on the open set $U \subset \Real^n$, and $\gamma:[a, b] \to U$ is a $\CD{1}$ path, then 
+\[\int_{\gamma}df = f(\gamma(b)) - f(\gamma(a)).\]
+
+In other words, the line integral of the differential will be independent of the path taken, it only depends on the endpoints of the path.
+\end{theorem}
+
+\begin{proof}
+Essentially we will reduce this to the fundamental theorem of calculus. Define $g: [a, b] \to \Real$ by $g = f \circ \gamma$. Then by the chain rule, $g'(t) = \nabla f(\gamma(t)) \cdot \gamma'(t)$. Then we have that
+\begin{align*}
+\int_{\gamma}df &= \int_a^b df_{\gamma(t)}(\gamma'(t))~dt \\
+		&= \int_a^b [D_1f(\gamma(t))\gamma_1'(t) + \cdots + D_nf(\gamma(t))\gamma_n'(t)]~dt \\
+		&= \int_a^b \nabla f(\gamma(t)) \cdot \gamma'(t)~dt \\
+		&= \int_a^b g'(t)~dt \\
+		&= g(b) - g(a) = f(\gamma(b)) - f(\gamma(a)).
+\end{align*}
+\end{proof}

@@ -1,0 +1,43 @@
+The following section details some brief remarks on paths, their length, and parametrization.
+
+\begin{definition}
+A $\mathcal{C}^1$ path in $\Real^n$ is a continuously differentiable function $\gamma: [a, b] \to \Real^n$. $\gamma$ is said to be \textit{smooth} if $\gamma'(t) \neq \mathbf{0}$ for all $t \in [a, b]$.
+\end{definition}
+
+The condition $\gamma'(t) \neq \mathbf{0}$ indicates that the direction of a $\mathcal{C}^1$ path cannot change abruptly.
+
+Given a path in $\Real^n$ a natural question one might ask is what is the ``length'' of the path, or how we might define such a concept. Since our path is differentiable there will be some nice theorems about the path length in terms of parametrization of the path. This might be defined here eventually.
+
+Here is the first theorem about path length in terms of the path $\gamma$.
+\begin{theorem}
+If $\gamma: [a, b] \to \mathbb{R}^n$ is a $\mathcal{C}^1$ path, then the path length $s(\gamma)$ exists, and 
+\[s(\gamma) = \int_a^b\norm{\gamma'(t)}~dt.\]
+\end{theorem}
+
+If we think of our path $\gamma$ as a moving particle in $\mathbb{R}^n$, whose position vector at time $t$ is $\gamma(t)$, then $\norm{\gamma'(t)}$ is the speed of the particle at time $t$. So the above formula asserts that the distance traveled by the particle is equal to the integral over time of the speed of the particle, which is familiar from elementary calculus.
+
+The actual proof of the theorem is very involved and I will not include it here for now.
+
+Now we introduce the notion of two paths being equivalent. The geometric idea for equivalent paths is as follows. Two $\mathcal{C}^1$ paths are geometrically equivalent if they have the same initial point, the same terminal point, and they trace through the intermediate points in the same order. We also want to ask about whether or not $\alpha$ and $\beta$ have the same length. We will make this equivalence precise now.
+\begin{definition}
+The path $\alpha: [a, b] \to \Real^n$ is equivalent to $\beta: [c, d] \to \Real^n$ if there is a $\mathcal{C}^1$ function $\varphi: [a, b] \to [c, d]$ such that $\phi([a, b]) = [c, d]$, $\alpha = \beta \circ \varphi$, and $\varphi'(t) > 0$ for all $t$. 
+\end{definition}
+
+This relation is actually an equivalence relation. Also, we have that if the $\mathcal{C}^1$ paths $\alpha$ and $\beta$ are equivalent, then $\alpha$ is smooth if and only if $\beta$ is smooth.
+
+The following theorem will show that if $\alpha$ and $\beta$ are equivalent, then their path lengths are equal. (This is the special case $f(x) = 1$.)
+\begin{theorem}
+Suppose that $\alpha: [a, b] \to \Real^n$ and $\beta: [c, d] \to \Real^n$ are equivalent $\mathcal{C}^1$ paths, and that $f$ is a continuous real-valued function whose domain in $\Real^n$ contains the common image of $\alpha$ and $\beta$. Then we have 
+\[\int_a^bf(\alpha(t))\norm{\alpha'(t)}~dt = \int_c^df(\beta(t))\norm{\beta'(t)}~dt.\]
+\end{theorem}
+
+\begin{proof}
+This will basically be a matter of $u$-substitution. Let $\varphi: [a, b] \to [c, d]$ be a $\mathcal{C}^1$ function such that $\alpha = \beta \circ \varphi$ and $\varphi'(t) > 0$ for all $t \in [a, b]$. Then
+\begin{align*}
+\int_a^bf(\alpha(t))\norm{\alpha'(t)}~dt &= \int_a^b f(\beta(\varphi(t)))\norm{\beta'(\varphi(t))\varphi'(t)}~dt \\
+		&= \int_a^b f(\beta(\varphi(t))) \norm{\beta'(\varphi(t))} \phi'(t)~dt \\
+		&= \int_c^d f(\beta(u))\norm{\beta'(u)}~du.
+\end{align*}
+\end{proof}
+
+

@@ -1,0 +1,27 @@
+In this section we will outline Green's Theorem and illustrate a couple of examples.
+
+Recall the fundamental theorem of calculus
+\[\int_a^bf'(t)~dt = f(b) - f(a)\]
+(where $f$ is $\CD{1}$). We may regard the interval $I = [a, b]$ as an oriented smooth curve from $a$ to $b$, and we might write $\int_Idf$ for the left hand side of the above equation. Thinking of $b$ as the positive endpoint and $a$ as the negative endpoint of $I$, we can write $\int_{\partial I}f$ instead of $f(b) - f(a)$. Then the FTC takes on sort of a contrived form
+\[\int_Idf = \int_{\partial I}f.\]
+
+What is Green's Theorem? Well, it's a certain generalization of the fundamental theorem of calculus, and we will state it in the form of the modified equation above.
+
+\begin{definition}
+Given a $\CD{1}$ differential form $\omega = Pdx + Qdy$ in two variables, the differential $d\omega$ is defined by 
+\[d\omega = \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)~dx~dy.\] We call $d\omega$ a \textit{differential $2$-form}.
+\end{definition}
+
+\begin{definition}
+Given a continuous differential $2$-form $\alpha = adxdy$ and a contented set $D \subset \Real^2$, the integral of $\alpha$ on $D$ is defined by 
+\[\int_D\alpha = \iint_D a(x, y)~dx~dy.\]
+\end{definition}
+
+Now we are ready for the statement of Green's Theorem, as stated below.
+
+\begin{theorem}
+Let $D \in \Real^2$ be a connected compact set whose boundary $\partial D$ is the union of a finite number of mutually disjoint piecewise-smooth closed curves. Suppose each of these curves is positively oriented (interior is on the left hand side) with respect to $D$. If $\omega = Pdx + Qdy$ is a $\CD{1}$ differential $1$-form defined on $D$, then 
+\[\int_Dd\omega = \int_{\partial D}\omega.\]
+More explicitly, we have that
+\[\iint_D\left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)~dx~dy = \int_{\partial D}Pdx + Qdy.\]
+\end{theorem}

@@ -4,6 +4,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{physics}
+\usepackage{graphics}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
@@ -19,20 +20,32 @@
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\CD}[1]{\mathcal{C}^{#1}}
 
-\title{Motivational Material}
+\title{Multivariable Calculus}
 \author{Jonathan Lin}
 \date{\today}
 
 \begin{document}
 \maketitle
 
-\section{Smooth Paths}
+\section{Two Important Theorems}
+
+In this section we discuss the \textit{Implicit Function Theorem} and the \textit{Inverse Function Theorem}, the two most important results in differential calculus. In their essence they are about solving certain systems of equations and determining the dependent and independent variables in a system.
+
+\subsection{Inverse Function Theorem Motivation}
+\input{inv_motivation}
+
+\subsection{Inverse Function Theorem, various examples}
+\input{inv_examples}
+
+
+\section{Differential Forms, the theorems of Vector Calculus}
+\subsection{Smooth Paths}
 \input{paths}
 
-\section{Line Integrals}
+\subsection{Line Integrals}
 \input{line_integral}
 
-\section{Green's Theorem}
+\subsection{Green's Theorem}
 \input{green}
 
 \end{document}

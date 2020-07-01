@@ -5,12 +5,12 @@
 \usepackage{amsthm}
 
 \theoremstyle{plain}
-\newtheorem{thm}{Theorem}
-\newtheorem{cor}{Corollary}
-\newtheorem{prop}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}
+\newtheorem{definition}{Definition}
 \newtheorem{question}{Question}
 \newtheorem{example}{Example}
 
@@ -25,7 +25,34 @@
 
 \maketitle
 
-In the far future, I will try to do differential geometry stuff involving category theory. Probably will involve algebraic topology in some sense of the word (the two subjects are connected, or so I hear.
+In the far future, I will try to do differential geometry stuff involving category theory. Probably will involve algebraic topology in some sense of the word (the two subjects are connected, or so I hear. Also, with a toe in the Vakil online AG course, I will update these notes if I consider any ideas.
+
+\section{Initial Motivation}
+
+A lot of structural results about different objects, like groups, vector spaces, sets, etc. have similarities. We can make these precise because it turns out that the thing that is in common between them happens to be correctly formulated when you consider objects in question and maps between them.
+
+Consider, for example, the notion of a product (of sets). Normally, if $U$ and $V$ are sets, then we define this by
+
+\[U \times V = \{(u, v) \mid u \in U, v \in V\}.\]
+
+But no one is stopping us from defining 
+\[U \times V = \{(v, u) \mid v \in V, u \in U\}.\]
+This doesn't really seem to matter that much, as there is an obvious bijection between the two. We will now make this precise using the language of category theory.
+
+Notice that from the set $U \times V$ we get two canonical products $\pi_1$ and $\pi_2$, the projection maps to the first and second coordinate, respectively. If we defined $U \times V$ using the alternative definition we let $\pi_1$ and $\pi_2$ be the swapped projection maps. Note that if $p \in U \times V$ and we know the elements $\pi_1(p)$ and $\pi_2(p)$, we can recover $p$. So $\pi_1$ and $\pi_2$ can be seen to define $U \times V$, in the following precise sense:
+\begin{definition}
+A \textbf{product} is a set $P$, along with maps $\pi_1: P \to U$, $\pi_2: P \to V$ such that for any set $P'$ with maps $\mu_1: P' \to U$ and $\mu_2: P' \to V$ these maps factor uniquely through $P$. That is, given $\mu_1$ and $\mu_2$ there exists a unique map $\phi: P' \to P$ such that $\mu_1 = \pi_1 \circ \phi$, $\mu_2 = \pi_2 \circ \phi$. So a product is essentially a diagram (insert diagram here). Usually $\pi_1$ and $\pi_2$ are left implicit.
+\end{definition}
+
+Returning to the canonical example of $U \times V$ with canonical projection maps. If I have two maps $\mu_1: P \to U$, and $\mu_2: P \to V$, then there is a unique map $\mu: P \to U \times V$ which satisfies the conditions in the definition, namely, the map $p \mapsto (\mu_1(p), \mu_2(p))$. This is because from the equation $\pi_1 \circ \mu = \mu_1$ we obtain for all $p \in P$
+\[\pi_1(\mu(p)) = \mu_1(p) \implies \mu(p) = (\mu_1(p), y)\] for some $y \in V$ and similarly we obtain 
+\[\mu(p) = (x, \mu_2(p))\] which shows that the claimed map is the unique map involved.
+
+Now suppose that we have two products $(P_1, \pi_i)$ and $(P_2, \mu_i)$ on $N$ and $M$. If we let $\phi_i$ be the unique maps obtained by factoring from $P_i$, respectively, we get that $\phi_1 \circ \phi_2$ has the property that 
+\[\phi_1 \circ \phi_2 \circ \mu_i = \phi_1 \circ \pi_i = \mu_i.\]
+But the identity map on $P_2$ has the same property, so $\phi_1 \circ \phi_2 = Id_{P_2}$ (by the uniqueness of the factoring map). Similarly, $\phi_2 \circ \phi_1 = Id_{P_1}$, so we can conclude that they are inverses of each other and $P_1$ and $P_2$ have a canonical bijection between their product structure.
+
+Why exactly do we care, though? It is because if we are working in another category, such as the category of vector spaces or differentiable manifolds, the exact same argument will work in those categories modulo terminology, because all we have used were the ``arrows'' between the objects being considered in question. This will motivate our introduction into exploring category theory a little bit more (hopefully).
 
 \section{Introduction to Categories}
 
@@ -39,7 +66,7 @@ In any reasonable mathematical structure, we have a concept of \textit{composing
 
 Really, this is all a category is. Conceived in the 20th century, categories were created to formalize reasoning generally about structures and structure preserving maps between them.
 
-\begin{defn}
+\begin{definition}
 A category $\Cc$ is a mathematical structure consisting of the following two objects:
 \begin{itemize}
 	\item A class of \textit{objects}, denoted by $\Ob(\Cc)$,
@@ -58,12 +85,12 @@ The arrows have to satisfy the following properties:
 	\item For morphisms $f:W \to X$, $g: X \to Y$, and $h: Y \to Z$, we have that $(h \circ g) \circ f = h \circ (g \circ f)$.
 	\item For any morphism $f: A \to B$ we have that $1_B \circ f = f \circ 1_A = f$.
 \end{itemize}
-\end{defn}
+\end{definition}
 
 From this great generality of a mathematical structure, we might think about some elementary consequences of the definitions.
-\begin{prop}
+\begin{proposition}
 	The identity morphism (synonymous with arrow) for an object $A$ in a category $\Cc$ is unique.
-\end{prop}
+\end{proposition}
 \begin{proof}
 Trivial, in the sense that the proof is completely standard. If you don't know how to do this you might not have enough mathematical maturity yet to read this document.
 \end{proof}

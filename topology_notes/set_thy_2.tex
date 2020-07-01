@@ -1,0 +1,141 @@
+\subsection{Counting and Cardinality}
+
+\begin{definition}
+A set $A$ is \textit{finite} if there is a bijection $f:A \to [n]$ ($[n] = \{1, 2, 3, \dotsc, n\}$), or if $A = \varnothing$.
+If $A$ is not finite, then we call $A$ \textit{infinite}.
+\end{definition}
+
+One can check for themselves that finite unions and finite cartesian products are finite. 
+
+\begin{definition}
+A set $A$ is countably infinite if there is a bijection $f: \mathbb{N} \to A$. $A$ is called \textit{countable} if $A$ is finite or countably infinite.
+\end{definition}
+
+\begin{theorem}
+A countable union $\bigcup_{n = 1}^{\infty}A_n$ of countable sets $A_n$ is countable. (Note that we can account for finite unions by setting $A_m = \varnothing$ for sufficiently large $m$.
+\end{theorem}
+
+\begin{proof}
+Assume that the union is infinite.
+
+If $A_j$ is countable we can write $A_j = \{a_{ij}\}_{i \geq 1}$. Otherwise, if $A_j$ is finite, then we can construct an infinite sequence by defining $A_n = a_{kj}$ for $n \geq k$.
+
+We can list the elements of these sets as an infinite double array 
+\[
+\begin{matrix}
+a_{11} & a_{12} & a_{13} & a_{14} & \dots \\
+a_{21} & a_{22} & a_{23} & a_{24} & \dots \\
+a_{31} & a_{32} & a_{33} & a_{34} & \dots \\
+a_{41} & a_{42} & a_{43} & a_{44} & \dots \\
+\vdots &\vdots &\vdots &\vdots & \ddots 
+\end{matrix}
+\]
+
+If the index of the union is finite we can enumerate all the elements by going up and down the columns, omitting repeats. Otherwise we can enumerate the elements along the anti-diagonals, omitting repeats as needed. The end result exhibits a bijection between $\mathbb{N}$ and $\bigcup_{i = 1}^{\infty}A_n$.
+\end{proof}
+
+From this we easily get that the two sets $\mathbb{Z}$ and $\mathbb{Q}$ are countable sets.
+
+\begin{theorem}
+The finite product $A_1 \times \cdots \times A_n$ of countable sets is countable.
+\end{theorem}
+
+\begin{proof}
+By an inductive argument it will suffice to show this for two sets $A \times B$. If we enumerate $A = \{a_j\}_{j \geq 1}$ as in the previous proof, we have that 
+\[A \times B = \bigcap_{a \in A}\{(a, b) \mid b \in B\}\] which is a countable union of countable sets. Hence by the previous theorem $A \times B$ is countable.
+\end{proof}
+
+This does not extend to infinite products, as the following theorem shows.
+\begin{definition}
+If $A$ and $B$ are sets, define $A^B = \{f \mid f:B \to A\}$.
+\end{definition}
+\begin{theorem}
+	There is no injection $I: \{0, 1\}^{\mathbb{N}} \to \mathbb{N}$.
+\end{theorem}
+
+\begin{proof}
+Suppose such an $I$ exists. Then we can list the members of the domain in a sequence $S = \{\bold{x}_1, \bold{x}_2, \dots\}$ where 
+\begin{align*}
+\bold{x}_1 &= \{x_{11}, x_{12}, \dots\}\\
+\bold{x}_2 &= \{x_{21}, x_{22}, \dots\}\\
+\bold{x}_3 &= \{x_{31}, x_{32}, \dots\}\\
+	\dots
+\end{align*}
+
+Consider the sequence $y = (y_1, \dots, y_n, \dots)$ where $y_j = 1 - x_{jj}$. This is not equal to any of the $\bold{x}_k$ for any $k$, a contradiction.
+\end{proof}
+
+As a corollary $\mathbb{R}$ is uncountable.
+
+But of course, there are sets which are greater then $\mathbb{R}$ in cardinality!
+
+\begin{theorem}
+For any set $A$ there is no onto function $f:A \to \mathcal{P}(A)$.
+\end{theorem}
+\begin{proof}
+	Consider any function $g: A \to \mathcal{P}(A)$ and WLOG we will assume that $A \neq \varnothing$. Consider the set 
+	\[B = \{a \in A | a \not\in g(a)\} \subset A.\]
+	We claim that $B$ is not in the image of $g$. For we have
+	\[a_0 \in B \iff g(a_0) = B \iff a_0 \not\in B,\]
+	a contradiction.
+\end{proof}
+
+As a corollary we have that $\mathcal{P}(\mathbb{N})$ is uncountable.
+We can define an ``equivalence relation'' $\sim$ on sets by saying $A \sim B$ if and only if $A \simeq B$ (that is, there is a bijection between the two sets). We'd like to assign a ``cardinal number'' $o(A)$ to any set $A$, with the property that $o(A) = o(B) \iff A \simeq B$. A serious question.
+
+\begin{question}
+Is this ``equivalence relation'' even well defined? 
+\end{question}
+
+This is a question that hopefully a course like MATH446 would answer. For now we'll just say that $o(A)$ is a ``thing'', where $o(A) = o(B)$ if and only if $A \simeq B$, with the properties that $o(\mathbb{N}) = \aleph_0$ and $o(\mathbb{R}) = \mathfrak{c}$. 
+
+\subsection{Well Orderings}
+
+We might want to refine last lecture's equivalence relation to a partial order relation $\leq$ where $o(A) \leq o(B)$ if and only if there exists an injective function $f$ from $A$ to $B$. Showing that this is an equivalence relation in the sense that it satisfies the properties of an equivalence relation is difficult.
+
+\begin{theorem}
+Suppose $A$ and $B$ are sets, and $f: A\to B$ is injective and $g: B \to A$ is injective. Then $o(A) = o(B)$, ie a bijection exists between $A$ and $B$.
+\end{theorem}
+\begin{proof}
+This is the \textit{Schroeder-Bernstein Theorem}. It is assigned as a problem to do for the homework.
+\end{proof}
+
+We will begin by developing some of the theory of well-ordered sets.
+
+\begin{definition}
+	A set $(A, \leq)$ with a total order relation is called well-ordered if every non-empty subset $B \in A$ has a smallest element. A well-ordered set is called an ordinal.
+\end{definition}
+
+For example, $\mathbb{Z}_{\geq 0} = \{0, 1, 2, \dots\}$ with the usual order is well-ordered. We might also create another well-ordered set in the following way: let $\omega$ be an abstract element, and consider $\mathbb{Z}_{\geq 0} \cup \{\omega\}$ with $\leq$ extending the order of the previous set by just setting $\omega$ to be the maximal element of the set. Clearly the two are not order-isomorphic. We will write $[0, \omega]$ for this well-ordered set, and $[0, \omega)$ for just $\mathbb{Z}_{\geq 0}$.
+
+As another example of a well ordered set, consider $\{0, 1\} \times [0, \omega)$ in the dictionary order. It is clear that it is well ordered because we can explicitly construct the minimum element by using the well-ordering of $\mathbb{Z}_{\geq 0}$. We generalize this example below.
+
+\begin{theorem}
+Consider $[0, \omega) \times [0, \omega)$ in the dictionary order. We claim that this is a well-ordered set.
+\end{theorem}
+\begin{proof}
+Suppose $A \subset [0, \omega) \times [0, \omega)$ is some non-empty subset. Let $A_1$ be the subset $[0, \omega)$ consisting of all the first coordinates of elements in $A$. Since its superset is well ordered there must be a least element of $A_1$ called $a_0$. Now we can define $B$ analogously as 
+\[B = \{b \in [0,\omega) \mid (a_0, b) \in A\}.\]
+By the same reasons as before $B$ has a smallest element $b_0$ and by construction $(a_0, b_0)$ is the minimal element of $A$.
+\end{proof}
+
+Now suppose $(X, \leq)$ is well-ordered. Then any non-maximal $x \in X$ has an immediate successor denoted $x^+$ or $x + 1$. This is clear if you consider that the set $\{y \in X \mid y > x\}$ has a least element $y_0$.
+
+However, $x$ need not have an immediate predecessor, even if $x$ is not the minimal element.
+
+\begin{definition}
+	If $X$ is a well-ordered set, and $a \in X$, the \textit{section} of $X$ by $a$ is the set 
+	\[S_a = \{x \in X \mid x < a\}.\] We also denote $S_a$ by $[0, a]$.
+\end{definition}
+
+It is an interesting property that $[0, \omega)$ is a countable and well-ordered set every section of which is finite. In fact this property uniquely determines the order type of $[0, \omega)$. As such we call $[0, \omega)$ the minimal countable well-ordered set.
+
+The following theorem by Zermelo in 1904 reveals the astonishing fact:
+\begin{theorem}
+For any set $A$ there exists an order relation on $A$ that is a well-ordreing of $A$. In particular, there exists an uncountable well-ordred set.
+\end{theorem}
+The proof uses the Axiom of Choice.
+
+\begin{proposition}
+There exists a well ordered set having a largest element $\Omega$ such that $S_{\Omega}$ is uncountable, but every other section of $[0, \omega]$ is countable!
+\end{proposition}

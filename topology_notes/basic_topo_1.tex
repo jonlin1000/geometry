@@ -1,0 +1,173 @@
+We might recall the definition of a sequence. How do we generalize this, possibly to other spaces without a metric? The key idea is to define ``open sets'' in any set $X$, and to use these to define open neighborhoods of points $x \in X$.
+
+\begin{definition}
+Let $X$ be a set. A topology on $X$ is a family of subsets $\tau$ of $X$ such that 
+\begin{itemize}
+	\item $\varnothing$ and $X$ are in $\tau$
+	\item Arbitrary unions of members of $\tau$ lie in $\tau$
+	\item Any finite intersection of members of $\tau$ lies in $\tau$.
+\end{itemize}
+Then we call the pair $(X, \tau)$ a $\textbf{topological space}$. The elements of $X$ are called \textit{points} and the elements $U$ of $\tau$ are called open sets of $(X, \tau)$. 
+\end{definition}
+\begin{definition}
+A neighborhood (abbr. nbhd) of a point $x \in X$ is an open set $U$ containing $x$. The points of $U$ are said to be called \textbf{$U$-close} to $x$.
+\end{definition}
+
+\begin{example}
+Let $X$ be any set and let $\tau = \{\varnothing, X\}$. This is the smallest possible topology on $X$, called the indiscrete topology.
+
+Let $X$ be any set, and let $\tau = \mathcal{P}(X)$. This is called the discrete topology on $X$. That is, all subsets of $X$ are open.
+
+Let $X = \{a,b\}$ and let $\tau = \{\varnothing, \{a\}, \{a, b\}$. Then $(X, \tau)$ is called the \textbf{Sierpinski space}.
+
+Let $X$ be any set, and let $\tau$ be the family of subsets $U$ of $X$ such that $X \setminus U$ is finite or all of $X$. Then $\tau$ is a topology called the \textbf{finite complement topology}.
+
+Let $d$ be a distance function on $X$. Then a pair $(X, d)$ of a set $X$ with a metric $d$ on $X$ is called a metric space. In any metric space $(X, d)$ we can define for any $\varepsilon > 0$ the $\varepsilon$-ball 
+\[B(x, \varepsilon) = \{y \in X | d(x, y) < \varepsilon\}.\]
+Then we can define a topology $\tau$ on $X$ called the metric space topology by $U \subset X$ is open if for all $x \in U$ there exists $\varepsilon > 0$ such that $B(x, \varepsilon) \subset U$. 
+\end{example}
+
+\begin{definition}
+Let $\tau$ and $\tau'$ be two topologies on a set $X$. If $\tau' \supset \tau$ then we say that $\tau'$ is finer than $\tau$, and $\tau$ is coarser than $\tau'$. We say that $\tau$ is comparable to $\tau'$ if they are ordered with respect to subset inclusion.
+\end{definition}
+
+\subsection{Bases}
+
+\begin{definition}
+Let $(X, \tau)$ be a topological space. A subset $\mathcal{B} \subset \tau$ is called a basis for $\tau$ if every $U \in \tau$ is a union of some members of $\mathcal{B}$. 
+\end{definition}
+
+For example, by definition the family of $\varepsilon$-balls in a metric space is a basis generating that topology.
+
+Here is another way to phrase the definition:
+\begin{definition}
+A collection $\mathcal{C} \subset \tau$ is a basis of $\tau$ if and only if for all $U \in \tau$ and all $x \in U$ there exists $C \in \mathcal{C}$ such that $x \in C \subset U$.
+\end{definition}
+
+\begin{question}
+Suppose $B \subset \mathcal{P}(X)$. Is $B$ a basis for a topology of $X$?
+\end{question}
+
+The answer is no, not necessarily.
+
+\begin{theorem}
+Let $\mathcal{B}$ be a family of subsets of $X$ that satisfies the following condition: if $B, C \in \mathcal{B}$ and $x \in B \cap C$, then there exists $D \in \mathcal{B}$ such that $x \in D \subset B \cap C$.
+Then $\mathcal{B}$ is a basis for some topology on $X$ containing $\varnothing$ and $X$.
+\end{theorem}
+
+\begin{proof}
+By definition, $\varnothing$ and $X$ are in $\tau$. Suppose $\{U_i\}_{i \in I}$ is a family of elements of $\tau_{\mathcal{B}}$. Each $U_i$ is either $\varnothing$, $X$, or a union $\bigcup_{j \in I_i}B_j = U_i$, so the union of the $U_i$'s is as well.
+
+Suppose $U_1, U_2 \in \tau_{\mathcal{B}}$. We will show that their intersection is as well. Take $x \in U_1 \cap U_2$. Since $x \in U_i$ there exists $B_1 \in \mathcal{B}$ and $B_2 \in \mathcal{B}$ such that $x \in B_1$, $x \in B_2$, so $x \in B_1 \cap B_2$. Then we know there is a $B_3$ such that $x \in B_3 \subset B_1 \cap B_2 \subset U_1 \cap U_2$, so we are done. Any arbitrary finite union follows from induction.
+\end{proof}
+
+\begin{proposition}
+Let $\mathcal{B}$ and $\mathcal{B}'$ be bases for the topologies $\tau$ and $\tau'$ on $X$, respectively. Then the following are equivalent:
+\begin{itemize}
+	\item $\tau'$ is finer than $\tau$.
+	\item For all $x \in X$ and every $B \in \mathcal{B}$ there exists $B' \in \mathcal{B}'$ such that $x \in B' \subset B$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Let $U \in \tau$. Then $U$ is a union of elements of $\mathcal{B}$ which implies that $U$ is a union of elements of $\mathcal{B}'$. So $U \in \tau'$. 
+
+Conversely, given an $x \in \mathcal{B}$, we have that $B \in \mathcal{B} \in \tau \subset \tau'$. So $B \in \tau'$ by definition, so we have a $B'$ (namely $B$) such that $x \in B' \subset B$.
+\end{proof}
+
+\begin{definition}
+We define $3$ topologies on $\mathbb{R}$:
+\begin{enumerate}
+	\item Consider the basis $\{(a,b) | a < b\}$. This basis generates the usual topology on $\mathbb{R}$.
+	\item Consider instead the basis $\{[a,b) \mid a < b\}$. The topology $\tau'$ generated by this basis is called the lower limit topology.
+	\item Let $K = \{1/n \mid n \in \mathbb{N}\}$. Now consider the basis $\{(a, b) \mid a < b\} \cup \{(a, b) - K \mid a < b\}$. We will call this the $K$-topology on $\mathbb{R}$.
+\end{enumerate}
+We will let $\mathbb{R}$, $\mathbb{R}_{\ell}$, and $\mathbb{R}_K$ denote these topological spaces, respectively.
+\end{definition}
+
+\begin{proposition}
+The topologies $\mathbb{R}_{\ell}$ and $\mathbb{R}_K$ are strictly finer than the standard topology on $\mathbb{R}$. However, they are not comparable with each other.
+\end{proposition}
+
+\begin{definition}
+Let $\sigma = \{A_i\}_{i \in I}$ be any family of subsets of $X$. Then there exists a unique smallest topology $\tau(\sigma)$ which contains $\sigma$. The family $\tau(\sigma)$ consists of $\varnothing$, $X$, all finite intersections of the $A_i$, and all arbitrary unions of these finite intersections. $\sigma$ is called a subbasis for $\tau(\sigma)$ and $\tau(\sigma)$ is said to be generated by $\sigma$.
+\end{definition}
+
+By construction $\tau(\sigma) \supset \sigma$. If $\tau'$ is another topology on $X$ containing $\sigma$ then $\tau(\sigma) \subset \tau'$. We note that $\tau(\sigma)$ is as described because $\sigma \in \tau(\sigma)$.
+
+Since $\bigcup$ distributes over $\bigcap$, the latter collection, together with $\varnothing$ and $X$ forms a topology.
+
+\subsection{The Order Topology}
+
+Let $(X, \leq)$ be a totally ordered set. Let $\mathcal{B}$ be the collection of open intervals $(a, b)$, or $[a_0,b)$ or $(a, b_0]$ where $a_0$ and $b_0$ are the minimal and maximal element of $X$, if they exist.
+
+\subsection{The Product Topology}
+
+Given $(X, \tau_X)$ and $(Y, \tau_Y)$, two topological spaces, the product topology on $X \times Y$ denoted $\tau_X \times \tau_Y$ is the topology having basis $\mathcal{B}$ of all sets of the form
+\[\mathcal{B} = \{U \times V \mid U \in \tau_X, V \in \tau_Y\}.\]
+
+This forms a basis, because we have
+\[(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2),\] so we can find a third basis element easily in their intersection.
+
+\begin{proposition}
+If $(X, \tau_X)$ and $(Y, \tau_Y)$ are $2$ topological spaces with bases $\mathcal{B}$ and $\mathcal{B}'$, respecitvely, then the family $\mathcal{C} = \{\mathcal{B} \times \mathcal{B}'\}$ is a topology for $X \times Y$. 
+\end{proposition}
+
+Note that the two statements in the definition are different: the former deals with elements in the topology, and the latter deals with only basis elements in the topology. 
+
+\begin{proof}
+Let $W \in X \times Y$ be open, and $(x, y) \in W$. By definition there exists $U \in \tau_X$ and $V \in \tau_Y$ such that $(x, y) \in U \times V \subset W$. Then we choose $B \in \mathcal{B}$ and $B' \in \mathcal{B}'$ such that $(x, y) \in B \times B' \subset U \times V \subset W$.
+\end{proof}
+
+\begin{definition}
+The maps $\pi_1:X \times Y \to X$ where $(x, y) \mapsto x$ and $\pi_2: X \times Y \to Y$ where $(x, y) \mapsto y$ are called the two projections of $X \times Y$ to the first and second factor, respectively.
+\end{definition}
+
+Note that $\pi_1^{-1}(U) = U \times Y$ and $\pi_2^{-1}(V) = X \times V$. 
+
+\begin{proposition}
+The family $\sigma$ consisting of inverse images of $\pi_1$ of open sets $U$ and inverse images of $\pi_2$ of open sets $V$ is a subbasis for $X \times Y$.
+\end{proposition}
+
+\begin{proof}
+Observe that $\pi_1^{-1}(U) \cap \pi_2^{-1}(V) = U \cap V$. Well, these are just the basis elements which generate $X \times Y$. So the claim is true.
+\end{proof}
+
+\subsection{The Subspace Topology}
+
+Sometimes it is useful to define topologies on a subset of a topological space, regardless of whether that set itself is closed or open.
+
+\begin{definition}
+Let $(X, \tau)$ be a topological space. If $Y \subset X$ is any subset then the family $\tau_Y = \{U \cap Y \mid U \in \tau\}$ is a topology on $Y$ called the subspace topology.
+\end{definition}
+
+It is pretty easy (DeMorgan) to show that this endows $Y$ with a topology. Another thing which is simple to prove is the following:
+
+\begin{proposition}
+If $\mathcal{B}$ is a basis for $\tau$, then $\mathcal{B}_Y = \{B \cap Y \mid B \in \mathcal{B}\}$ is a basis for $\tau_Y$.
+\end{proposition}
+
+\begin{proof}
+Suppose $x \in (B_1 \cap Y) \cap (B_2 \cap Y)$. By the associativity and commutativity of set intersection this is equivalent to $x \in (B_1 \cap B_2) \cap Y$. Since $B_1$ and $B_2$ are basis elements there exists an element $B_3$ such that $x \in B_3 \subset B_1 \cap B_2$. It follows that $x \in B_3 \cap Y \subset (B_1 \cap B_2) \cap Y$ and we are done.
+\end{proof}
+
+\begin{definition}
+If $Y \subset X$ is a subspace of $X$, then we say a set $U$ is open in $Y$ if $U \in \tau_Y$, and $U$ is open in $X$ if $U \in \tau$.
+\end{definition}
+
+\begin{proposition}
+Let $Y \in X$ be a subspace of $X$. If $U$ is open in $Y$ and $Y$ is open in $X$ then $U$ is open in $X$.
+\end{proposition}
+\begin{proof}
+$U$ = $V \cap Y$ for some open set $V$ in $X$. But if $Y$ is open, it follows that $V \cap Y$ is open as well.
+\end{proof}
+
+\begin{theorem}
+If $A \subset X$ and $B \subset Y$ are subspaces, then the product topology of $A \times B$ is the same as the subspace topology which $A \times B$ inherits from $X \times Y$.
+\end{theorem}
+\begin{proof}
+This follows from the fact that $(U \times V) \cap (A \times B) = (U \cap A) \times (V \cap B)$. But $U \cap A$ is an open set in $A$ and $(V \cap B$ is a general open set in $B$. Hence there is a bijective correspondance between the two topologies, hence they are equal.
+\end{proof}
+
+\begin{example}
+Suppose $(X, \leq)$ is an ordered set with the order topology, and $Y \subset X$. Then $Y$ inherits an order from $X$. So we get an order topology on $(Y, \leq)$. This topology need not be the same as the subspace topology. For example, consider the interval $I = [0,1]$, and the set $I \times I$ with the dictionary order. %todo
+\end{example}

@@ -1,0 +1,139 @@
+\subsection{Motivation of the definition of a Topology}
+
+Tamvakis describes topology as the theory of \underline{convergence}. Now what exactly does this mean?
+
+Consider a sequence $\{x_n\}$ of real numbers.
+
+We say that $\{x_n\}$ converges to $x$ if and only if for all $\varepsilon > 0$ there exists a natural number $N$ such that $|x_n - x| < \ve$ for all $n > N$. Then, we can say that $f: \Real \to \Real$ is continuous if $x_n \to x \implies f(x_n) \to f(x)$.
+
+Now, how do we generalize this? For instance, let $X$ be a set. Can we define convergence of sequences in $X$? We need a notion of \textbf{distance} for this to work! But what if there is no natural distance function? For example, define 
+\[X = \{f: \Real \to \Real~\text{where }f\text{ is continuous}\}.\] 
+For this set, we have a notion of convergence (the canonical convergence of functions) but no notion of a distance function, or \textit{metric}.
+
+In general for an interesting set $X$ a metric that is meaningful is very hard to define.
+
+Another related question about topology is related to maps and the distance that they preserve. This is related to the question about associating spaces within various equivalence classes.
+
+Consider a map $f:(X, d) \to (Y, d)$ between two metric spaces. We can define \textit{isometries} as the maps $f$ which preserve distance, that is, $d(f(x), f(y)) = d(x, y)$. It is not too difficult to show that isometries are also bijections. We can associate $X$ and $Y$ as the ``same'' space. But for many questions that one might want to answer restricting the metric is often too restrictive for questions that people want to answer.
+
+Suppose that we relax the notion of isometries, where we suppose that instead of preserving distance, we only have that $f$ is continuous with a continuous inverse. A cube may be deformed into more interesting shapes and spaces, such as a sphere. It's an interesting note that we can't continuously deform a cube into a torus (or doughnut).
+
+\begin{question}
+How do we define continuity without the notion of distance? These issues lead into the definition of what a topology is.
+\end{question}
+
+\subsection{Background on Sets}
+
+The following definition introduces some notation:
+\begin{definition}
+We say $a \in A$ to mean that the object $a$ is an element of a set $A$. The symbol $\varnothing$ represents the empty set. We denote the union of two sets as $A \cap B$ and the intersection of two sets as $A \cup B$. We define the difference of two sets 
+\[A - B = A \\ B = \{a \in A | a \not\in B\}.\]
+If a superset $X$ is understood we write $A^c$ or $\overline{A}$ to mean $X - A$.
+\end{definition}
+
+\begin{proposition}
+For any three sets $A$, $B$, and $C$ we have that $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+\end{proposition}
+
+\begin{proposition}[DeMorgan's Laws]
+For any two sets $A$ and $B$ we have that $(A \cap B)^c = A^c \cup B^c$ and $(A \cup B)^c = A^c \cap B^c$. 
+\end{proposition}
+
+Given an index set $I \neq \varnothing$, we can consider a family of sets $\{A_i\}_{i \in I}$, one for each $i$ in $I$. We can then form arbitrary unions and intersections of sets. For indexes like these DeMorgan's laws still hold.
+
+There are various ways of constructing new sets.
+
+\begin{definition}
+The powerset of $A$ $\mathcal{P}(A)$ is defined as 
+\[\mathcal{P}(A) = \{I | I \subset A\}.\]
+The Cartesian product of $X$ and $Y$, $X \times Y$ is defined as 
+\[X \times Y = \{(x, y) | x \in X, y \in Y\}.\]
+\end{definition}
+
+Later we will define a Cartesian product over an arbitrary index set.
+
+Given non-empty sets $A$ and $B$ we define $f:A \to B$ as a rule of assignment which assigns to every $a \in A$ some unique $b \in B$. We can describe the map in the following manners: $f(a) = b$ or $a \mapsto b$. More formally, a function $f: A \to B$ is identified with its graph $\Gamma(f) \subset A \times B$. $\Gamma(f)$ has the condition that if $(a, b) \in \Gamma(f)$ and $(a, c) \in Gamma(f)$ then $b = c$.
+
+Given a map $f: A \to B$ we call $A$ the domain and $B$ the codomain. The \textit{image} of $f$ is the set 
+\[f(A) = \{f(a) | a \in A\}.\]
+We can restrict functions to subsets in the obvious way. We can also define composition, one-to-one (injective), onto (surjective), and bijective functions fairly easily.
+
+\begin{definition}
+If $f:A \to B$ is a bijection we have a function $f^{-1}:B \to A$ called the \textit{inverse function}. We have the composition rules $(f^{-1} \circ f)(a) = a$ and $(f \circ f^{-1})(b) = b$ for all $a$ and $b$.
+\end{definition}
+
+\begin{definition}
+Given a function $f: A \to B$ and a subset $B_0 \subset B$ we define 
+\[f^{-1}(B_0) = \{a \in A | f(a) \in B_0\}.\]
+
+This technically means that $f^{-1}$ is a function from the powerset of $B$ to the powerset of $A$. An interesting thing to note is that the inverse image preserves both unions and intersections in the canonical sense.
+\end{definition}
+
+\begin{definition}
+A relation $R$ on $A$ is a subset $R \subset A \times A$. We write $xRy$ if $(x, y) \in R$. 
+\end{definition}
+
+Most interesting relations have restrictions on the relation. The most important types of relations are \textbf{equivalence relations} and \textbf{order relations}.
+
+\begin{definition}
+Denote the relation $R$ by $\sim$. $\sim$ is an equivalence relation if it is reflexive, symmetric, and transitive. One can pick up an abstract algebra book to learn what these terms mean.
+\end{definition}
+
+An important property of equivalence relations is that we can define equivalence classes for each $x \in A$, defined by $C_x = \{y \in A \mid x \sim y\}.$ 
+
+\begin{proposition}
+The following are equivalent:
+\begin{itemize}
+	\item $C_x \cap C_y = \varnothing$
+	\item $C_x = C_y$
+	\item $x \sim y$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+	Suppose $z \in C_x \cap C_y$. Then $z \sim x$ and $z \sim y$, implying $x \sim y$. Then, if $y \sim z$ then $x \sim y$ implies $x \sim z$ by transitivity. So $z \in C_y \implies z \in C_x$. The converse is proved similarly. If $C_x = C_y$ then their intersection is just $C_x$ and by definition we have that $C_x$ is non-empty ($x \sim x$).
+\end{proof}
+
+Thus any two equivalence classes are disjoint or equal.
+
+\begin{definition}
+	A \textit{partition} of a set $A$ is a collection $\mathcal{D}$ of disjoint non empty subsets of $A$ whose union is $A$.
+\end{definition}
+
+So a collection of all equivalence classes form a partition of $A$. Conversely, given a partition of $A$, we can create an equivalence relation $x \sim y \iff x \in P_i, y \in P_i$ where $P_i$ is one of the disjoint subsets. We denote the set of all equivalence clss of an equivalence relation as $A/\sim$. Note the similarity to quotienting, and how the process is basically the same but with more generality.
+
+\begin{definition}[Munkres]
+A partial order of a set $A$ is a relation $\leq$ on $A$ which is reflexive, anti-symmetric ($x \leq y, y \leq x \implies x = y$) and transitive. A partial order is called a total order if every pair of two elements of $A$ are comparable.
+\end{definition}
+From now on, when we refer to ordered sets we are referring to totally ordered sets.
+If $(A, \leq)$ is an ordered set, and $a < b$, then we define the open interval $(a, b) = \{x \in A\mid a < x < b\}$ where $<$ means the obvious non-equality thing. If $(a, b) = \varnothing$ then $b$ is called the immediate successor of $a$ and $a$ is called the immediate predecessor of $b$. We can similarly define other types of intervals, in fact it's done in Munkres chapter 2.
+
+\begin{definition}
+Suppose $(A, \leq_1)$ and $(B, \leq_2)$ are two ordered sets. Then we define the dictionary order relation on $A \times B$ by $(a, b) < (a', b')$ if $a <_1 a'$ or $a = a'$ and $b<_2 b$.
+\end{definition}
+
+\begin{definition}
+If $A$ and $B$ are ordered sets we say that $A$ and $B$ have the same order type or are order isomorphic if there is a bijection $f: A \to B$ which is order preserving: $a < a' \implies f(a) <_2 f(a')$.
+\end{definition}
+
+$\mathbb{N}$ is not order isomorphic to $\mathbb{Z}$: note that $\mathbb{N}$ has a least element. Similarly, $\mathbb{Z}$ is not order isomorphic to $\mathbb{Q}$ because integers have immediate successors and predecessors and no rational number has that property.
+
+\begin{definition}
+	Let $(A, \leq)$ be an ordered set. $b \in A$ is a largest element of $A$ if $b \geq a$ for all $a \in A$. $b$ is an upper bound for $X$ if $b \geq x$ for all $x \in X$. We say that $b$ is a \textbf{least upper bound} if $b$ is an upper bound but for any upper bound $b'$ for x we have $b \leq b'$.
+	Least elements, lower bounds, and greatest lower bounds can be defined analogously.
+\end{definition}
+
+Finally, Tamvakis discussed some axioms about ``infinity'', which he did not believe in. (He is a finitist.) 
+\begin{definition}
+	The \textbf{Axiom of Infinity} essentially asserts the existence of $\mathbb{N}$.
+\end{definition}
+
+Related to infinity, suppose that $\{A_i\}_{i \in I}$ is a family of sets, with $A_i neq \varnothing$ for all $i \in I$. We want to define the product 
+\[\prod_{i \in I}A_i.\]
+If I is finite, then WLOG $I = \{1, \dotsc, n\}$ and we can just define the product as the Cartesian Product. How do we define an infinite product? The idea is to think of the tuple $(a_1, \dots, a_n)$ as a function with values $a(1), \dotsc, a(n)$ where $a_i \in A_i$ for all $i$. 
+
+\begin{definition}
+	The product 
+	\[\prod_{i \in I}A_i\] is the set of all functions \[a: I \to \bigcup_{i \in I}A_i\] such that $a(i) \in A_i$ for all $i \in I$. 
+\end{definition}
+
+The famous \textbf{Axiom of Choice} asserts that this product is non-empty. Such a function $a$ is called a \textit{choice function} for the family of sets.

@@ -1,0 +1,35 @@
+\begin{definition}
+Let $X$ be a topological space. We have that $F \subset X$ is closed if $F^c = X - F$ is open.
+\end{definition}
+
+\begin{example}
+If $X = [0, 1) \cup \{2\}$ with the subspace topology, then $[0, 1)$ and $\{2\}$ are both open and closed in $X$. Later we will see that this means that $X$ is not connected.
+\end{example}
+
+\begin{theorem}
+In any topological space $X$, the following are true:
+\begin{itemize}
+	\item $\varnothing$ and $X$ are closed
+	\item Arbitrary intersections of closed sets are closed.
+	\item Finite unions of closed sets are closed.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+The first point is clear. The second and third points follow from DeMorgan's Laws.
+\end{proof}
+
+One may notice that the definition of a closed set is not \textit{intrinsic}, that is, it is defined as sort of a dual to open sets. The following definitions try to make closed sets more intrinsic.
+
+\begin{definition}
+	Let $A \subset X$ be any subset. A point $x \in X$ is called adherent to $A$ if any neighborhood $U$ of $X$ contains at least one point of $A$, possibly $x$ itself.
+\end{definition}
+\begin{definition}
+The \textbf{closure} of $A$ is the set 
+\[\overline{A} = \{x \in X \mid \forall (\text{neighborhoods $U$ of $x$}), U \cap A \neq \varnothing\}.\]
+\end{definition}
+
+\begin{example}
+In $\mathbb{R}$, let $A = \{(x, \sin(1/x)) \mid 0 < x \leq 1\}$. Then $\overline{A} = A \cup (\{0\} \times [-1, 1])$.
+\end{example}
+
+As a remark, if the topology on $X$ is given by a basis $\mathcal{B}$, then $x \in \overline{A}$ is true if and only if every $B \in \mathcal{B}$ with $x \in B$ intersects $A$ non-trivially (ie not $\varnothing$).

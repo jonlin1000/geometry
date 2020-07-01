@@ -1,0 +1,31 @@
+In 1885, Weierstrass proved that any continuous function $f:[a, b] \to \mathbb{R}$ can be uniformly approximated by polynomials. Stone proved a vast generalization of this in 1940 and the ideas are outlined in this section.
+
+\subsection{Basic Definitions}
+
+Let $V$ be a real (or complex) vector space. We will consider vector spaces with a norm, that is, a function $\norm{\cdot}: V \to \mathbb{R}_{\geq 0}$ with the following properties:
+\begin{itemize}
+	\item $\norm{v} \geq 0$ for all $v$, with equality if and only if $v = 0$,
+	\item $\norm{\lambda v} = |\lambda| \norm{v}$ for all scalars $\lambda$ and vectors $v$,
+	\item $\norm{u + v} \leq \norm{u} + \norm{v}$ for all $u$ and $v$ (the triangle inequality.
+\end{itemize}
+
+Note that any normed vector space becomes a metric space.
+
+\begin{definition}
+A normed vector space $(V, \norm{\cdot})$ is called a Banach space if its associated metric space is \textit{complete}, that is, every cauchy sequence in $V$ converges.
+\end{definition}
+
+\begin{example}
+$(\Real^n, \norm{\cdot}_i)$ are finite dimensional Banach spaces. The sequence spaces $\ell_1$, $\ell_2$, and $\ell_{\infty}$ are also Banach spaces.
+\end{example}
+
+\begin{example}
+Let $X$ be a compact Hausdorff topological space, and denote $\mathcal{C}(X) = \mathcal{C}(X, \mathbb{R})$, that is, the set of all continuous functions from $X$ to $\mathbb{R}$ with the sup norm $\norm{f} = \sup_{x \in X}|f(x)|$. Then $(\mathcal{C}(X), \norm{\cdot})$ is a Banach space.
+\end{example}
+
+\begin{definition}
+A vector space $V$ is an \textbf{algebra} if it has an interior multiplication $\cdot: V \times V \to V$ which is biliniear. A \textbf{normed algebra} is a normed vector space which is an algebra where $\norm{uv} \leq \norm{u}\norm{v}$. 
+\end{definition}
+
+Clearly $(\mathcal{C}(X), \norm{\cdot})$ is a normed algebra with the usual multiplication of functions. In fact, it is a complete normed algebra, or otherwise called a Banach algebra. Can we classify Banach Algebras?
+
